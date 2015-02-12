@@ -1,0 +1,48 @@
+使用方式和之前大致一樣
+只是 Json Node 的名稱不同
+並且多了 rotation / local rotation 兩種模式
+
+。Rotation / Local Rotation 說明
+	骨架是堆疊的，有 Parent / Child 的概念
+	舉例來說 LeftShoulder 是 LeftArm 的 Parent node
+	而 LeftArm 是 LeftHand 的 Parent node
+
+	因此當旋轉 LeftShoulder 時，LeftArm 這點會跟著被移動
+	從整個 3D 世界的觀點來看，LeftArm 的旋轉值改變了（rotation）
+	但是從 LeftArm 自己的觀點來看，他自己的旋轉並沒有改變（local rotation）
+
+	舉例來說，就像汽車人坐在汽車裡
+	當汽車轉彎時，從整個世界來看，人面向的位置改變了（rotation）
+	但對人自己來說，他並沒有旋轉（local rotation）
+
+當畫面顯示「Use Rotation」時
+傳進去的參數，會從整個世界的觀點來看
+
+當畫面顯示「Use Local Rotation」時
+傳進去的參數，就會從自身的角度來看
+（一般在 Mocap 的檔案裡面，都是儲存 Local Rotation 的參數）
+
+
+
+以下是可運作的範例
+（可直接用 RabbitMQSimulator 送出，會對骨架產生影響的）
+
+{
+	"Head" : { x:50, y:0, z:200 }
+}
+
+
+{
+	"LeftArm" : { x:50, y:0, z:0 }
+}
+
+
+{
+	"Spine2" : { x:90, y:0, z:0 }
+}
+
+
+{
+	"LeftLeg" : { x:0, y:0, z:200 },
+	"RightLeg" : { x:0, y:0, z:90 }
+}
